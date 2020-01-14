@@ -28,7 +28,7 @@ mkdir -p ${PROJDIR}/elev/.temp
 TMP="${PROJDIR}/elev/.temp"
 
 # create new temporary location for the job, exit after creation of this location
-grass7_trunk -c epsg:4326 ${GRASSDB}/latlong_temp -e --text
+grass7_latest -c epsg:4326 ${GRASSDB}/latlong_temp -e --text
 # now we can use this new location and run the job defined via	GRASS_BATCH_JOB
 
 LN=`which Preprocess_Elev`
@@ -37,7 +37,7 @@ OLN=`echo ${LNK}|rev|cut -d/ -f3- |rev`
 OLNK="${OLN}/Sub_scripts"
 
 export GRASS_BATCH_JOB="${OLNK}/Sub_Elev.sh"
-grass7_trunk -c ${GRASSDB}/latlong_temp/elev --text
+grass7_latest -c ${GRASSDB}/latlong_temp/elev --text
 unset GRASS_BATCH_JOB
 
 ## CleanUp

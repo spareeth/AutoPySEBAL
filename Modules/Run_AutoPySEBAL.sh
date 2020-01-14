@@ -81,18 +81,18 @@ for dt in `cat ${TMP}/dates.txt`; do
 	field_capacity="${PROJDIR}/soil/wcpf2_topsoil_gapfilled_wgs84.tif"
 	luemax=2.5
 # Calib
-	tcoldminin=308.0  # 2nd percentile ts_dem
-	tcoldmaxin=315.0  # 5th percentile ts_dem
-	ndvihot_low=0.03 # 5th percentile
-	ndvihot_high=0.12 # 10th percentile
-	temp_lapse=0.0088 # r.regression.line mapx=srtm mapy=Temp_2018_07_05, get gain(b)
+	tcoldminin1=2  # low percentile ts_dem
+	tcoldmaxin1=5  # high percentile ts_dem
+	ndvihot_low1=1 # low percentile above zero
+	ndvihot_high1=5 # high percentile above zero
+	temp_lapse=0.0068 # r.regression.line mapx=srtm mapy=Temp_2018_07_05, get gain(b)
 	res=${RES}
 
 ### COMMAND ####
-	python AutoSEBAL_v0.py ${indir} ${outdir} ${itype} ${pathdem} ${lsprefix} \
+	python ${HOME}/usr/local/bin/AutoSEBAL_v0.py ${indir} ${outdir} ${itype} ${pathdem} ${lsprefix} \
 	${lsnr} ${lsthermal} ${hot} ${cold} ${tinst} ${t24} ${rhinst} ${rh24} ${winst} ${w24} ${zx} ${rad_method24} \
 	${rs24} ${transm24} ${rad_method_inst} ${rsinst} ${transminst} ${obst_ht} ${theta_sat_top} ${theta_sat_sub} ${theta_res_top} ${theta_res_sub} ${wilt_pt} ${depl_factor} \
-	${field_capacity} ${luemax} ${tcoldminin} ${tcoldmaxin} ${ndvihot_low} ${ndvihot_high} ${temp_lapse} ${res}
+	${field_capacity} ${luemax} ${tcoldminin1} ${tcoldmaxin1} ${ndvihot_low1} ${ndvihot_high1} ${temp_lapse} ${res}
 done
 
 rm -rf ${TMP}

@@ -14,6 +14,8 @@ for i in `ls Modules/*.sh`; do
 	ln -sf ${IN}/${i} ${HOME}/usr/local/bin/${MOD}
 done
 
+cp Modules/*.py ${HOME}/usr/local/bin
+
 for i in `ls Aux_scripts/*`; do
 	MOD=`echo $i|cut -d/ -f2|cut -d. -f1`
 	ln -sf ${IN}/${i} ${HOME}/usr/local/bin/${MOD}

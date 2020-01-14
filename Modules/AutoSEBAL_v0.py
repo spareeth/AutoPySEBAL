@@ -60,13 +60,13 @@ import warnings
 @click.argument('field_capacity')
 @click.argument('luemax')
 # calib
-@click.argument('tcoldminin')
-@click.argument('tcoldmaxin')
-@click.argument('ndvihot_low')
-@click.argument('ndvihot_high')
+@click.argument('tcoldminin1')
+@click.argument('tcoldmaxin1')
+@click.argument('ndvihot_low1')
+@click.argument('ndvihot_high1')
 @click.argument('temp_lapse')
 @click.argument('res')
-def main(indir, outdir, itype, pathdem, lsprefix, lsnr, lsthermal, hot, cold, tinst, t24, rhinst, rh24, winst, w24, zx, rad_method24, rs24, transm24, rad_method_inst, rsinst, transminst, obst_ht, theta_sat_top, theta_sat_sub, theta_res_top, theta_res_sub, wilt_pt, depl_factor, field_capacity, luemax, tcoldminin, tcoldmaxin, ndvihot_low, ndvihot_high, temp_lapse, res):
+def main(indir, outdir, itype, pathdem, lsprefix, lsnr, lsthermal, hot, cold, tinst, t24, rhinst, rh24, winst, w24, zx, rad_method24, rs24, transm24, rad_method_inst, rsinst, transminst, obst_ht, theta_sat_top, theta_sat_sub, theta_res_top, theta_res_sub, wilt_pt, depl_factor, field_capacity, luemax, tcoldminin1, tcoldmaxin1, ndvihot_low1, ndvihot_high1, temp_lapse, res):
   
     # Do not show warnings
     warnings.filterwarnings('ignore')  
@@ -445,13 +445,13 @@ def main(indir, outdir, itype, pathdem, lsprefix, lsnr, lsthermal, hot, cold, ti
         h_obst_name = '%s' %str(obst_ht) 
         h_obst_kind_of_data=1                  # Obstacle height (m) -Replace for map based on Land use?
         print 'Map to the Obstacle height = %s' %(h_obst_name)
-											
-    NDVIhot_low = float(ndvihot_low)            # Lower NDVI treshold for hot pixels
-    NDVIhot_high = float(ndvihot_high)              # Higher NDVI treshold for hot pixels
-    tcoldmin = float(tcoldminin)
-    tcoldmax = float(tcoldmaxin)
-    print 'Lower NDVI treshold for hot pixels = %s' %(NDVIhot_low)			
-    print 'Higher NDVI treshold for hot pixels = %s' %(NDVIhot_high)					
+
+    NDVIhot_low1 = float(ndvihot_low1)            # Lower NDVI treshold for hot pixels
+    NDVIhot_high1 = float(ndvihot_high1)              # Higher NDVI treshold for hot pixels
+    tcoldmin1 = float(tcoldminin1)
+    tcoldmax1 = float(tcoldmaxin1)
+    print 'Lower NDVI treshold for hot pixels = %s' %(NDVIhot_low1)			
+    print 'Higher NDVI treshold for hot pixels = %s' %(NDVIhot_high1)					
 			
    
     # Data for Module 12 - Soil moisture
@@ -2312,200 +2312,17 @@ def main(indir, outdir, itype, pathdem, lsprefix, lsnr, lsthermal, hot, cold, ti
     save_GeoTiff_proy(lsc, Pair, Atmos_pressure_fileName, shape_lsc, nband=1)
     save_GeoTiff_proy(lsc, Psychro_c, Psychro_c_fileName, shape_lsc, nband=1)							
 
-    # ------------------------------------------------------------------------
-    # ------------------------------------------------------------------------
-    # ----   Testing calculated dT based on other classes
-
-    '''
-    # Calculate dT for 4 different NDVI classes
-    # Constants Class 1
-    NDVI_check_min = 0.9 
-    NDVI_check_max = 10
-    ts_dem_class_1_mean = np.nanmean(ts_dem[np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min)])	
-    ts_dem_class_1_std = np.nanstd(ts_dem[np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min)])	
-    ts_dem_class_1 = ts_dem_class_1_mean - 2 * ts_dem_class_1_std    
-								
-								
-    Rn_Class_1  = np.nanmean(rn_inst[np.logical_and(ts_dem<ts_dem_class_1,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])
-    G_Class_1 = np.nanmean(g_inst[np.logical_and(ts_dem<ts_dem_class_1,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])							
-    LAI_class_1 = np.nanmean(LAI[np.logical_and(ts_dem<ts_dem_class_1,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])						
-    vegt_cover_class_1 = np.nanmean(vegt_cover[np.logical_and(ts_dem<ts_dem_class_1,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])					
-    z0m_class_1 = np.nanmean(Surf_roughness[np.logical_and(ts_dem<ts_dem_class_1,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])
- 
-								
-    if Wind_inst_kind_of_data == 1:        
-        u_200_class_1	= np.nanmean(u_200[np.logical_and(ts_dem<ts_dem_class_1,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])
-    else:
-        u_200_class_1 = u_200
-
-    if Temp_inst_kind_of_data == 1:        
-        Temp_inst_class_1 = np.nanmean(Temp_inst[np.logical_and(ts_dem<ts_dem_class_1,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])
-    else:
-        Temp_inst_class_1 = Temp_inst
-									
-    if RH_inst_kind_of_data == 1:        
-        RH_inst_class_1	= np.nanmean(RH_inst[np.logical_and(ts_dem<ts_dem_class_1,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])
-    else:
-        RH_inst_class_1 = RH_inst
-									
-    air_dens_class_1 = np.nanmean(air_dens[np.logical_and(ts_dem<ts_dem_class_1,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])
-    Psychro_c_class_1 = np.nanmean(Psychro_c[np.logical_and(ts_dem<ts_dem_class_1,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])
-    rs_min = 100								
-    rsoil_min = 80	
-        								 								
-    dT_new1, T0_DEM_new1 = Check_dT(Rn_Class_1, G_Class_1, LAI_class_1, vegt_cover_class_1, z0m_class_1, u_200_class_1, Temp_inst_class_1, RH_inst_class_1, air_dens_class_1, Psychro_c_class_1, rl, rs_min, rsoil_min) 
-
-    print 'CHECK dT for different Classes'
-    print 'Class 1 (NDVI higher then 0.9)'
-    print 'dT = %s' % dT_new1
-    print 'dT (old) = %s' %(np.nanmean(dT[np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min)]))
-    print 'T0_DEM = %s' % T0_DEM_new1
-								
-    # Constants Class 2
-    NDVI_check_min = 0.8 
-    NDVI_check_max = 0.9
-    ts_dem_class_2_mean = np.nanmean(ts_dem[np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min)])	
-    ts_dem_class_2_std = np.nanstd(ts_dem[np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min)])	
-    ts_dem_class_2 = ts_dem_class_2_mean - 2 * ts_dem_class_2_std    
-								
-    Rn_Class_2  = np.nanmean(rn_inst[np.logical_and(ts_dem<ts_dem_class_2,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])
-    G_Class_2 = np.nanmean(g_inst[np.logical_and(ts_dem<ts_dem_class_2,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])							
-    LAI_class_2 = np.nanmean(LAI[np.logical_and(ts_dem<ts_dem_class_2,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])							
-    vegt_cover_class_2 = np.nanmean(vegt_cover[np.logical_and(ts_dem<ts_dem_class_2,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])						
-    z0m_class_2 = np.nanmean(Surf_roughness[np.logical_and(ts_dem<ts_dem_class_2,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])	
-    
-           
-    if Wind_inst_kind_of_data == 1:        
-        u_200_class_2	= np.nanmean(u_200[np.logical_and(ts_dem<ts_dem_class_2,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])	
-    else:
-        u_200_class_2 = u_200
-    if Temp_inst_kind_of_data == 1:        
-        Temp_inst_class_2 = np.nanmean(Temp_inst[np.logical_and(ts_dem<ts_dem_class_2,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])	
-    else:
-        Temp_inst_class_2 = Temp_inst
-									
-    if RH_inst_kind_of_data == 1:        
-        RH_inst_class_2	= np.nanmean(RH_inst[np.logical_and(ts_dem<ts_dem_class_2,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])	
-    else:
-        RH_inst_class_2 = RH_inst
-									
-    air_dens_class_2 = np.nanmean(air_dens[np.logical_and(ts_dem<ts_dem_class_2,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])	 
-    Psychro_c_class_2 = np.nanmean(Psychro_c[np.logical_and(ts_dem<ts_dem_class_2,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])	
-    rs_min = 100
-    rsoil_min = 80	
-        								 								
-    dT_new2, T0_DEM_new2 = Check_dT(Rn_Class_2, G_Class_2, LAI_class_2, vegt_cover_class_2, z0m_class_2, u_200_class_2, Temp_inst_class_2, RH_inst_class_2, air_dens_class_2, Psychro_c_class_2, rl, rs_min, rsoil_min) 
-
-    print 'CHECK dT for different Classes'
-    print 'Class 2 (NDVI between 0.8 and 0.9)'
-    print 'dT = %s' % dT_new2
-    print 'dT (old) = %s' %(np.nanmean(dT[np.logical_and(ts_dem<ts_dem_class_2,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))]))	
-    print 'T0_DEM = %s' % T0_DEM_new2								
-								
-    # Constants Class 3
-    NDVI_check_min = 0.7 
-    NDVI_check_max = 0.8
-    ts_dem_class_3_mean = np.nanmean(ts_dem[np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min)])	
-    ts_dem_class_3_std = np.nanstd(ts_dem[np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min)])	
-    ts_dem_class_3 = ts_dem_class_3_mean - 2 * ts_dem_class_3_std     
-								
-								
-    Rn_Class_3  = np.nanmean(rn_inst[np.logical_and(ts_dem<ts_dem_class_3,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])
-    G_Class_3 = np.nanmean(g_inst[np.logical_and(ts_dem<ts_dem_class_3,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])								
-    LAI_class_3 = np.nanmean(LAI[np.logical_and(ts_dem<ts_dem_class_3,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])						
-    vegt_cover_class_3 = np.nanmean(vegt_cover[np.logical_and(ts_dem<ts_dem_class_3,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))]) 						
-    z0m_class_3 = np.nanmean(Surf_roughness[np.logical_and(ts_dem<ts_dem_class_3,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])	
-
-        
-    if Wind_inst_kind_of_data == 1:        
-        u_200_class_3	= np.nanmean(u_200[np.logical_and(ts_dem<ts_dem_class_3,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])
-    else:
-        u_200_class_3 = u_200
-
-    if Temp_inst_kind_of_data == 1:        
-        Temp_inst_class_3 = np.nanmean(Temp_inst[np.logical_and(ts_dem<ts_dem_class_3,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])
-    else:
-        Temp_inst_class_3 = Temp_inst
-								
-    if RH_inst_kind_of_data == 1:        
-        RH_inst_class_3	= np.nanmean(RH_inst[np.logical_and(ts_dem<ts_dem_class_3,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])
-    else:
-        RH_inst_class_3 = RH_inst
-									
-    air_dens_class_3 = np.nanmean(air_dens[np.logical_and(ts_dem<ts_dem_class_3,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])
-    Psychro_c_class_3 = np.nanmean(Psychro_c[np.logical_and(ts_dem<ts_dem_class_3,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])
-    rs_min = 100
-    rsoil_min = 80	
-        								 								
-    dT_new3, T0_DEM_new3 = Check_dT(Rn_Class_3, G_Class_3, LAI_class_3, vegt_cover_class_3, z0m_class_3, u_200_class_3, Temp_inst_class_3, RH_inst_class_3, air_dens_class_3, Psychro_c_class_3, rl, rs_min, rsoil_min) 
-
-    print 'Class 3 (NDVI between 0.7 and 0.8)'
-    print 'dT = %s' % dT_new3
-    print 'dT (old) = %s' %(np.nanmean(dT[np.logical_and(ts_dem<ts_dem_class_3,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))]))
-    print 'T0_DEM = %s' % T0_DEM_new3									
-
-    # Constants Class 4
-    NDVI_check_min = 0.6 
-    NDVI_check_max = 0.7
-    ts_dem_class_4_mean = np.nanmean(ts_dem[np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min)])	
-    ts_dem_class_4_std = np.nanstd(ts_dem[np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min)])	
-    ts_dem_class_4 = ts_dem_class_4_mean - 2 * ts_dem_class_4_std     								
-					
-    Rn_Class_4  = np.nanmean(rn_inst[np.logical_and(ts_dem<ts_dem_class_4,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])
-    G_Class_4 = np.nanmean(g_inst[np.logical_and(ts_dem<ts_dem_class_4,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])							
-    LAI_class_4 = np.nanmean(LAI[np.logical_and(ts_dem<ts_dem_class_4,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])						
-    vegt_cover_class_4 = np.nanmean(vegt_cover[np.logical_and(ts_dem<ts_dem_class_4,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])						
-    z0m_class_4 = np.nanmean(Surf_roughness[np.logical_and(ts_dem<ts_dem_class_4,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])  	
-
-       
-    if Wind_inst_kind_of_data == 1:        
-        u_200_class_4	= np.nanmean(u_200[np.logical_and(ts_dem<ts_dem_class_4,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])
-    else:
-        u_200_class_4 = u_200
-
-    if Temp_inst_kind_of_data == 1:        
-        Temp_inst_class_4 = np.nanmean(Temp_inst[np.logical_and(ts_dem<ts_dem_class_4,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])
-    else:
-        Temp_inst_class_4 = Temp_inst
-									
-    if RH_inst_kind_of_data == 1:        
-        RH_inst_class_4 = np.nanmean(RH_inst[np.logical_and(ts_dem<ts_dem_class_4,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])
-    else:
-        RH_inst_class_4 = RH_inst
-									
-    air_dens_class_4 = np.nanmean(air_dens[np.logical_and(ts_dem<ts_dem_class_4,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])
-    Psychro_c_class_4 = np.nanmean(Psychro_c[np.logical_and(ts_dem<ts_dem_class_4,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))])
-    rs_min = 100
-    rsoil_min = 80	
-        								 								
-    dT_new4, T0_DEM_new4 = Check_dT(Rn_Class_4, G_Class_4, LAI_class_4, vegt_cover_class_4, z0m_class_4, u_200_class_4, Temp_inst_class_4, RH_inst_class_4, air_dens_class_4, Psychro_c_class_4, rl, rs_min, rsoil_min) 
-        
-    print 'Class 4 (NDVI between 0.6 and 0.7)'
-    print 'dT = %s' % dT_new4
-    print 'dT (old) = %s' %(np.nanmean(dT[np.logical_and(ts_dem<ts_dem_class_4,np.logical_and(NDVI<NDVI_check_max,NDVI>NDVI_check_min))]))
-    print 'T0_DEM = %s' %T0_DEM_new4	
-     
-    dT_cold = (np.nanmean(dT[cold_pixels>0]))
-    dT_hot = (np.nanmean(dT[hot_pixels>0]))								
-    import matplotlib.pyplot as plt
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    ax.plot(T0_DEM_new4, dT_new4, 'ro')
-    ax.plot(T0_DEM_new3, dT_new3, 'ro')
-    ax.plot(T0_DEM_new2, dT_new2, 'ro')
-    ax.plot(T0_DEM_new1, dT_new1, 'ro')								
-    ax.plot([ts_dem_cold, ts_dem_hot], [dT_cold, dT_hot], label = 'dT', color = 'k', linewidth = 2)								
-    ax.axis([270, 350, -5, 20])	
-    plt.savefig(os.path.join(output_folder,'dTvsT0_DEM.jpg'))						
-    '''
-
     print '---------------------------------------------------------'
     print '-------------------- Hot/Cold Pixels --------------------'
     print '---------------------------------------------------------'
-       
+    
     # Temperature at sea level corrected for elevation: ??
     ts_dem,air_dens,Temp_corr=Correct_Surface_Temp(Temp_24,temp_surface_sharpened,Temp_lapse_rate,DEM_resh,Pair,dr,Transm_corr,cos_zn,Sun_elevation,deg2rad,QC_Map)    
-       
+    NDVI_land = np.where(NDVI <= 0, np.nan, NDVI)
+    NDVIhot_low = np.nanpercentile(NDVI_land, NDVIhot_low1)
+    NDVIhot_high = np.nanpercentile(NDVI_land, NDVIhot_high1)
+    tcoldmin = np.nanpercentile(ts_dem, tcoldmin1)
+    tcoldmax = np.nanpercentile(ts_dem, tcoldmax1)
     # Selection of hot and cold pixels
     # Hot pixels
     ts_dem_hot,hot_pixels = Calc_Hot_Pixels(ts_dem,QC_Map, water_mask,NDVI,NDVIhot_low,NDVIhot_high,Hot_Pixel_Constant)
@@ -2697,8 +2514,7 @@ def Calc_Biomass_production(LAI,ETP_24,moisture_stress_biomass,ETA_24,Ra_mountai
     vapor_stress = 0.88 - 0.183 * np.log(esat_24 - eact_24)
     vapor_stress_biomass = vapor_stress.clip(0.0, 1.0)
     Jarvis_coeff = (Th - Kt) / (Kt - Tl)
-    heat_stress_biomass = ((Temp_24 - Tl) * np.power(Th - Temp_24, Jarvis_coeff) /
-                           ((Kt - Tl) * np.power(Th - Kt, Jarvis_coeff)))
+    heat_stress_biomass = ((Temp_24 - Tl) * np.power(Th - Temp_24, Jarvis_coeff) / ((Kt - Tl) * np.power(Th - Kt, Jarvis_coeff)))
     print 'vapor stress biomass =', '%0.3f' % np.nanmean(vapor_stress_biomass)
     print 'heat stress biomass =', '%0.3f' % np.nanmean(heat_stress_biomass)
 				
@@ -3188,7 +3004,7 @@ def Calc_Meteo(Rs_24,eact_24,Temp_24,Surf_albedo,cos_zn,dr,tir_emis,Surface_temp
     return(Rn_24,rn_inst,g_inst,Rnl_24_FAO)
     
 #------------------------------------------------------------------------------    
-def Calc_surface_water_temp(Temp_inst,Landsat_nr,Lmax,Lmin,therm_data,b10_emissivity,k1_c,k2_c,eact,shape_lsc,water_mask_temp,Bands_thermal,Rp,tau_sky,surf_temp_offset,Image_Type):    
+def Calc_surface_water_temp(Temp_inst,Landsat_nr,Lmax,Lmin,therm_data,b10_emissivity,k1_c,k2_c,eact_inst,shape_lsc,water_mask_temp,Bands_thermal,Rp,tau_sky,surf_temp_offset,Image_Type):    
     """
     Calculates the surface temperature and create a water mask
     """ 
@@ -3215,7 +3031,7 @@ def Calc_surface_water_temp(Temp_inst,Landsat_nr,Lmax,Lmin,therm_data,b10_emissi
             # Combined:
             Temp_TOA = (Temp_TOA_10 + 1.378 * (Temp_TOA_10 - Temp_TOA_11) +
                            0.183 * np.power(Temp_TOA_10 - Temp_TOA_11, 2) - 0.268 +
-                           (54.30 - 2.238 * eact) * (1 - b10_emissivity))
+                           (54.30 - 2.238 * eact_inst) * (1 - b10_emissivity))
        
     elif Landsat_nr == 7:
         k1=666.09

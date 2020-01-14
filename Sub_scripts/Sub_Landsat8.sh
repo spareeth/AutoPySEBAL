@@ -41,7 +41,7 @@ for t in `cat ${TMP}/dates.txt`; do
 		g.region n=${N} s=${S} w=${W} e=${E} res=${RES} -a
 		r.mapcalc "${SCN}_BQA = if(${SCN}_BQA == 1,null(),${SCN}_BQA)"
 		i.landsat8.qc cloud="Maybe,Yes" cloud_shadow="Yes" cirrus="Yes" output=${TMP}/cloud_rules.txt --o
-		i.landsat8.qc snow_ice="Yes" snow_ice="Yes" output=${TMP}/snow_rules.txt
+		i.landsat8.qc snow_ice="Yes" output=${TMP}/snow_rules.txt
 		r.reclass input=${SCN}_BQA output=${SCN}_cloud_Mask rules=${TMP}/cloud_rules.txt
 		r.reclass input=${SCN}_BQA output=${SCN}_snow_Mask rules=${TMP}/snow_rules.txt
 		r.import in=${SCN}_B8.TIF out=${SCN}_B8 memory=2000 resolution=region
