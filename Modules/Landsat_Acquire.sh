@@ -30,7 +30,7 @@ echo required pr: "$PR"
 echo required sensor: "$SENSOR"
 echo required start: "$START"
 echo required stop: "$STOP"
-echo required stop: "$LIST"
+echo required list: "$LIST"
 
 mkdir -p ${PROJDIR}/landsat_raw/${SENSOR}
 TMP="${PROJDIR}/landsat_raw/${SENSOR}/temp"
