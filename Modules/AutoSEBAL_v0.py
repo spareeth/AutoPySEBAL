@@ -1345,7 +1345,7 @@ def main(indir, outdir, itype, pathdem, lsprefix, lsnr, lsthermal, hot, cold, ti
         if Thermal_Sharpening_not_needed is 0:
 
 		    # Upscale DEM to 90m
-            pixel_spacing_upscale=90
+            pixel_spacing_upscale = int(res) # Default value is 90
 
             dest_90, ulx_dem_90, lry_dem_90, lrx_dem_90, uly_dem_90, epsg_to = reproject_dataset(
                 DEM_fileName, pixel_spacing_upscale, UTM_Zone = UTM_Zone)
