@@ -2582,8 +2582,11 @@ def Separate_E_T(Light_use_extinction_factor,LAI,ETP_24,Theta_res_top,Theta_res_
    # constants
       
    Tpot_24_estimate=(1-np.exp(-Light_use_extinction_factor*LAI))*ETP_24
+
    SE_top = (top_soil_moisture-Theta_res_top)/(Theta_sat_top-Theta_res_top)
+
    Eact_24_estimate=np.minimum(1,1 / np.power(SE_top + 0.1,-2.0))*(ETP_24-Tpot_24_estimate)
+   
    #RS_soil = RS_soil_min * np.power(SE_top,-2.0)
    #Eact_24_estimate=(sl_es_24+Psychro_c*(1+RS_soil_min/Rah_PM))/(sl_es_24+Psychro_c*(1+RS_soil/Rah_PM))*(ETP_24-Tpot_24_estimate)
    n66_memory = moisture_stress_biomass_first * Tpot_24_estimate

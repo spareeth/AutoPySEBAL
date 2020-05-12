@@ -15,10 +15,10 @@ LC_NUMERIC=C
 export LC_NUMERIC
 
 ## Converting the bbox in latlong to UTM
-N=`m.proj -i $URX,$URY sep=,|cut -d, -f2`
-E=`m.proj -i $URX,$URY sep=,|cut -d, -f1`
-S=`m.proj -i $LLX,$LLY sep=,|cut -d, -f2`
-W=`m.proj -i $LLX,$LLY sep=,|cut -d, -f1`
+N=`m.proj -i coordinates=$URX,$URY sep=,|cut -d, -f2`
+E=`m.proj -i coordinates=$URX,$URY sep=,|cut -d, -f1`
+S=`m.proj -i coordinates=$LLX,$LLY sep=,|cut -d, -f2`
+W=`m.proj -i coordinates=$LLX,$LLY sep=,|cut -d, -f1`
 ######
 ## PROCESSING ##
 cd ${PROJDIR}/landsat_raw/${SENSOR}

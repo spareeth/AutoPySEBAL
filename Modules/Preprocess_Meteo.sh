@@ -11,10 +11,10 @@ argparse "$@" <<EOF || exit 1
 parser.add_argument('projdir', help='Master project directory')
 parser.add_argument('db', help='gldas/era5, currently only gldas is supported')
 parser.add_argument('indir', help='Input directory with meteo raster data')
-parser.add_argument('ury', help='Upper right latitude (n)')
-parser.add_argument('lly', help='Lower left latitude (s)')
 parser.add_argument('llx', help='Lower left longitude (w)')
+parser.add_argument('lly', help='Lower left latitude (s)')
 parser.add_argument('urx', help='Upper right longitude (e)')
+parser.add_argument('ury', help='Upper right latitude (n)')
 parser.add_argument('grassdb', help='Path to grass data base (eg: /home/grassdata)')
 parser.add_argument('start', help='start date (eg: yyyy-mm-dd)')
 parser.add_argument('stop', help='stop date (eg: yyyy-mm-dd)')
@@ -22,10 +22,10 @@ EOF
 echo required projdir: "$PROJDIR"
 echo required db: "$DB"
 echo required indir: "$INDIR"
-echo required ury: "$URY"
-echo required lly: "$LLY"
 echo required llx: "$LLX"
+echo required lly: "$LLY"
 echo required urx: "$URX"
+echo required ury: "$URY"
 echo required grassdb: "$GRASSDB"
 echo required start: "$START"
 echo required grassdb: "$STOP"
