@@ -89,7 +89,7 @@ for dt in `cat ${TMP}/dates.txt`; do
 	res=${RES}
 
 ### COMMAND ####
-	python ${HOME}/usr/local/bin/AutoSEBAL_v0.py ${indir} ${outdir} ${itype} ${pathdem} ${lsprefix} \
+	python3 ${HOME}/usr/local/bin/AutopySEBAL.py ${indir} ${outdir} ${itype} ${pathdem} ${lsprefix} \
 	${lsnr} ${lsthermal} ${hot} ${cold} ${tinst} ${t24} ${rhinst} ${rh24} ${winst} ${w24} ${zx} ${rad_method24} \
 	${rs24} ${transm24} ${rad_method_inst} ${rsinst} ${transminst} ${obst_ht} ${theta_sat_top} ${theta_sat_sub} ${theta_res_top} ${theta_res_sub} ${wilt_pt} ${depl_factor} \
 	${field_capacity} ${luemax} ${tcoldminin1} ${tcoldmaxin1} ${ndvihot_low1} ${ndvihot_high1} ${temp_lapse} ${res}
