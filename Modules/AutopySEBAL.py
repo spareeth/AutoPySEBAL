@@ -700,7 +700,7 @@ def main(indir, outdir, itype, pathdem, lsprefix, lsnr, lsthermal, hot, cold, ti
     snow_mask_fileName = os.path.join(output_folder, 'Output_evapotranspiration', '%s_snow_mask_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
     water_mask_fileName = os.path.join(output_folder, 'Output_evapotranspiration', '%s_water_mask_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
     #shadow_mask_fileName = os.path.join(output_folder, 'Output_cloud_masked', '%s_shadow_mask_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
-    #Rn_24_fileName = os.path.join(output_folder, 'Output_energy_balance', '%s_Rn_24_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
+    Rn_24_fileName = os.path.join(output_folder, 'Output_evapotranspiration', '%s_Rn_24_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
     #rn_inst_fileName = os.path.join(output_folder, 'Output_energy_balance', '%s_Rn_inst_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
     #g_inst_fileName = os.path.join(output_folder, 'Output_energy_balance', '%s_G_inst_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
     temp_corr_fileName = os.path.join(output_folder, 'Output_vegetation', '%s_temp_corr_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
@@ -710,13 +710,13 @@ def main(indir, outdir, itype, pathdem, lsprefix, lsnr, lsthermal, hot, cold, ti
     cold_pixels_fileName = os.path.join(output_folder, 'Output_evapotranspiration', '%s_cold_pixels_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
     #h_inst_fileName = os.path.join(output_folder, 'Output_energy_balance', '%s_h_inst_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
     #min_bulk_surf_res_fileName = os.path.join(output_folder, 'Output_evapotranspiration', '%s_%s_min_bulk_surf_resis_24_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
-    #EF_inst_fileName = os.path.join(output_folder, 'Output_energy_balance', '%s_EFinst_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
+    EF_inst_fileName = os.path.join(output_folder, 'Output_evapotranspiration', '%s_EFinst_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
     #LE_inst_fileName = os.path.join(output_folder, 'Output_energy_balance', '%s_LEinst_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
     ETref_24_fileName = os.path.join(output_folder, 'Output_evapotranspiration', '%s_ETref_24_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
     ETA_24_fileName = os.path.join(output_folder, 'Output_evapotranspiration', '%s_ETact_24_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
     ETP_24_fileName = os.path.join(output_folder, 'Output_evapotranspiration', '%s_ETpot_24_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
     ET_24_deficit_fileName = os.path.join(output_folder, 'Output_evapotranspiration', '%s_ET_24_deficit_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
-    #AF_fileName = os.path.join(output_folder, 'Output_evapotranspiration', '%s_Advection_Factor_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
+    AF_fileName = os.path.join(output_folder, 'Output_evapotranspiration', '%s_Advection_Factor_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
     kc_fileName = os.path.join(output_folder, 'Output_evapotranspiration', '%s_kc_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
     kc_max_fileName = os.path.join(output_folder, 'Output_evapotranspiration', '%s_kc_max_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
     #bulk_surf_res_fileName = os.path.join(output_folder, 'Output_evapotranspiration', '%s_bulk_surf_resis_24_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
@@ -740,7 +740,7 @@ def main(indir, outdir, itype, pathdem, lsprefix, lsnr, lsthermal, hot, cold, ti
  
     # Define name that is only needed in Image type 1 (Landsat)			
     if Image_Type is 1:	   
-       ndvi_fileName2 = os.path.join(output_folder, 'Output_vegetation', '%s_NDVI_%s_%s_%s_%s_%s.tif' %(sensor3, res3, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
+       ndvi_fileName2 = os.path.join(output_folder, 'Output_vegetation', '%s_NDVI_%s_%s_%s_%s_%s.tif' %(sensor3, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
        #QC_Map_fileName = os.path.join(output_folder, 'Output_cloud_masked', '%s_quality_mask_%s_%s_%s_%s_%s.tif' %(sensor1, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
        proyDEM_fileName_90 = os.path.join(output_folder, 'Output_temporary', 'proy_DEM_90.tif')
 
@@ -1240,7 +1240,7 @@ def main(indir, outdir, itype, pathdem, lsprefix, lsnr, lsthermal, hot, cold, ti
         try:
             if init is not None:					
                 # Output folder NDVI								
-                ndvi_fileName2 = os.path.join(output_folder, 'Output_vegetation', 'User_NDVI_%s_%s_%s_%s_%s.tif' %(res3, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
+                ndvi_fileName2 = os.path.join(output_folder, 'Output_vegetation', 'User_NDVI_%s_%s_%s_%s_%s.tif' %(res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))
                 NDVI=Reshape_Reproject_Input_data(r'%s' %str(ws['B%d' % number].value),ndvi_fileName2,proyDEM_fileName)		 														 
 
                 water_mask_temp = np.zeros((shape_lsc[1], shape_lsc[0]))
@@ -1251,7 +1251,7 @@ def main(indir, outdir, itype, pathdem, lsprefix, lsnr, lsthermal, hot, cold, ti
                 NDVI = Calc_NDVI(Reflect)
           
                 # save landsat NDVI	
-                ndvi_fileName2 = os.path.join(output_folder, 'Output_vegetation', '%s_NDVI_%s_%s_%s_%s_%s.tif' %(sensor3, res3, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))			
+                ndvi_fileName2 = os.path.join(output_folder, 'Output_vegetation', '%s_NDVI_%s_%s_%s_%s_%s.tif' %(sensor3, res2, year, str(mon).zfill(2), str(day).zfill(2), str(DOY).zfill(3)))			
                 save_GeoTiff_proy(lsc, NDVI, ndvi_fileName2, shape_lsc, nband=1)	
                 
                 # Calculate temporal water mask
@@ -2311,7 +2311,7 @@ def main(indir, outdir, itype, pathdem, lsprefix, lsnr, lsthermal, hot, cold, ti
     print('Mean instantaneous Ground Heat Flux = %0.3f (W/m2)' % np.nanmean(g_inst))
        
     # Save output maps
-    #save_GeoTiff_proy(lsc, Rn_24, Rn_24_fileName, shape_lsc, nband=1)
+    save_GeoTiff_proy(lsc, Rn_24, Rn_24_fileName, shape_lsc, nband=1)
     #save_GeoTiff_proy(lsc, rn_inst, rn_inst_fileName, shape_lsc, nband=1)
     #save_GeoTiff_proy(lsc, g_inst, g_inst_fileName, shape_lsc, nband=1)
     #save_GeoTiff_proy(lsc, Pair, Atmos_pressure_fileName, shape_lsc, nband=1)
@@ -2324,10 +2324,12 @@ def main(indir, outdir, itype, pathdem, lsprefix, lsnr, lsthermal, hot, cold, ti
     # Temperature at sea level corrected for elevation: ??
     ts_dem,air_dens,Temp_corr=Correct_Surface_Temp(Temp_24,temp_surface_sharpened,Temp_lapse_rate,DEM_resh,Pair,dr,Transm_corr,cos_zn,Sun_elevation,deg2rad,QC_Map)    
     NDVI_land = np.where(NDVI <= 0, np.nan, NDVI)
-    NDVIhot_low = np.nanpercentile(NDVI_land, NDVIhot_low1)
-    NDVIhot_high = np.nanpercentile(NDVI_land, NDVIhot_high1)
+    NDVIhot_low = np.nanpercentile(NDVI_land, NDVIhot_low1) # replace ts_dem by NDVI_land for hot pixels based on NDVI
+    NDVIhot_high = np.nanpercentile(NDVI_land, NDVIhot_high1) # replace ts_dem by NDVI_land for hot pixels based on NDVI
     tcoldmin = np.nanpercentile(ts_dem, tcoldmin1)
     tcoldmax = np.nanpercentile(ts_dem, tcoldmax1)
+    print('hot_minpercentile= %0.3f' % NDVIhot_low1, ', hot_maxpercentile= %0.3f' % NDVIhot_high1, ', cold_minpercentile= %0.3f' % tcoldmin1,', cold_maxpercentile= %0.3f' % tcoldmax1)
+    print('NDVIhot_low= %0.3f ' % NDVIhot_low, ', NDVIhot_high= %0.3f' % NDVIhot_high, ', tcoldmin= %0.3f (Kelvin)' % tcoldmin,', tcoldmax= %0.3f (Kelvin)' % tcoldmax)
     # Selection of hot and cold pixels
     # Hot pixels
     ts_dem_hot,hot_pixels = Calc_Hot_Pixels(ts_dem,QC_Map, water_mask,NDVI,NDVIhot_low,NDVIhot_high,Hot_Pixel_Constant)
@@ -2417,13 +2419,13 @@ def main(indir, outdir, itype, pathdem, lsprefix, lsnr, lsthermal, hot, cold, ti
 
     # Save files   
     #save_GeoTiff_proy(lsc, rs_min, min_bulk_surf_res_fileName, shape_lsc, nband=1)
-    #save_GeoTiff_proy(lsc, EF_inst, EF_inst_fileName, shape_lsc, nband=1)
+    save_GeoTiff_proy(lsc, EF_inst, EF_inst_fileName, shape_lsc, nband=1)
     #save_GeoTiff_proy(lsc, LE_inst, LE_inst_fileName, shape_lsc, nband=1)
     save_GeoTiff_proy(lsc, ETref_24, ETref_24_fileName, shape_lsc, nband=1)							
     save_GeoTiff_proy(lsc, ETA_24, ETA_24_fileName, shape_lsc, nband=1)
     save_GeoTiff_proy(lsc, ETP_24, ETP_24_fileName, shape_lsc, nband=1)
     save_GeoTiff_proy(lsc, ET_24_deficit, ET_24_deficit_fileName, shape_lsc, nband=1)
-    #save_GeoTiff_proy(lsc, AF, AF_fileName, shape_lsc, nband=1)								
+    save_GeoTiff_proy(lsc, AF, AF_fileName, shape_lsc, nband=1)								
     save_GeoTiff_proy(lsc, kc, kc_fileName, shape_lsc, nband=1)
     save_GeoTiff_proy(lsc, kc_max, kc_max_fileName, shape_lsc, nband=1)
     #save_GeoTiff_proy(lsc, bulk_surf_resis_24, bulk_surf_res_fileName, shape_lsc, nband=1)
@@ -2905,15 +2907,45 @@ def Correct_Surface_Temp(Temp_24,Surface_temp,Temp_lapse_rate,DEM_resh,Pair,dr,T
     ts_dem=ts_dem.clip(273,350)
   
     return(ts_dem,air_dens,Temp_corr)
- 
+
+
 #------------------------------------------------------------------------------
 def Calc_Hot_Pixels(ts_dem,QC_Map, water_mask, NDVI,NDVIhot_low,NDVIhot_high,Hot_Pixel_Constant):
-    """
-    Function to calculates the hot pixels based on the surface temperature and NDVI
-    """ 
+
+    #Function to calculates the hot pixels based on the surface temperature and NDVI
+
     for_hot = np.copy(ts_dem)
-    for_hot[NDVI <= NDVIhot_low] = 0.0
-    for_hot[NDVI >= NDVIhot_high] = 0.0
+    for_hot[NDVI <= NDVIhot_low] = np.nan
+    for_hot[NDVI >= NDVIhot_high] = np.nan
+    for_hot_thres = np.nanpercentile(for_hot, 99.5)
+    for_hot[np.logical_or(water_mask != 0.0, QC_Map != 0.0)] = 0.0
+    hot_pixels = np.copy(for_hot)
+    hot_pixels[for_hot < 273.0] = np.nan
+    hot_pixels[for_hot < for_hot_thres] = np.nan
+    ts_dem_hot_min = np.nanmin(hot_pixels)    # Max
+    ts_dem_hot_max = np.nanmax(hot_pixels)    # Max
+    ts_dem_hot_mean = np.nanmean(hot_pixels)  # Mean
+    ts_dem_hot_std = np.nanstd(hot_pixels)    # Standard deviation
+    #ts_dem_hot = ts_dem_hot_max - 0.25 * ts_dem_hot_std
+    #ts_dem_hot = (ts_dem_hot_max + ts_dem_hot_mean)/2
+    
+   
+    ts_dem_hot=ts_dem_hot_mean + Hot_Pixel_Constant * ts_dem_hot_std
+
+    
+    print('hot : min= %0.3f (Kelvin)' % ts_dem_hot_min, 'hot : max= %0.3f (Kelvin)' % ts_dem_hot_max, ', sd= %0.3f (Kelvin)' % ts_dem_hot_std, \
+           ', mean= %0.3f (Kelvin)' % ts_dem_hot_mean, ', value= %0.3f (Kelvin)' % ts_dem_hot)
+    return(ts_dem_hot,hot_pixels)    
+
+"""
+#------------------------------------------------------------------------------
+def Calc_Hot_Pixels(ts_dem,QC_Map, water_mask, NDVI,NDVIhot_low,NDVIhot_high,Hot_Pixel_Constant):
+
+    #Function to calculates the hot pixels based on the surface temperature and NDVI
+
+    for_hot = np.copy(ts_dem)
+    for_hot[NDVI <= NDVIhot_low] = np.nan
+    for_hot[NDVI >= NDVIhot_high] = np.nan
     for_hot[np.logical_or(water_mask != 0.0, QC_Map != 0.0)] = 0.0
     hot_pixels = np.copy(for_hot)
     hot_pixels[for_hot < 273.0] = np.nan
@@ -2930,7 +2962,34 @@ def Calc_Hot_Pixels(ts_dem,QC_Map, water_mask, NDVI,NDVIhot_low,NDVIhot_high,Hot
     print('hot : max= %0.3f (Kelvin)' % ts_dem_hot_max, ', sd= %0.3f (Kelvin)' % ts_dem_hot_std, \
            ', mean= %0.3f (Kelvin)' % ts_dem_hot_mean, ', value= %0.3f (Kelvin)' % ts_dem_hot)
     return(ts_dem_hot,hot_pixels)    
+
+
+#------------------------------------------------------------------------------
+def Calc_Hot_Pixels(ts_dem,QC_Map, water_mask, NDVI,NDVIhot_low,NDVIhot_high,Hot_Pixel_Constant):
     
+    #Function to calculates the hot pixels based on the surface temperature and NDVI
+    
+    for_hot = np.copy(ts_dem)
+    for_hot[for_hot <= NDVIhot_low] = np.nan
+    for_hot[for_hot >= NDVIhot_high] = np.nan
+    for_hot[np.logical_or(water_mask != 0.0, QC_Map != 0.0)] = 0.0
+    hot_pixels = np.copy(for_hot)
+    hot_pixels[for_hot < 273.0] = np.nan
+    ts_dem_hot_max = np.nanmax(hot_pixels)    # Max
+    ts_dem_hot_mean = np.nanmean(hot_pixels)  # Mean
+    ts_dem_hot_std = np.nanstd(hot_pixels)    # Standard deviation
+    #ts_dem_hot = ts_dem_hot_max - 0.25 * ts_dem_hot_std
+    #ts_dem_hot = (ts_dem_hot_max + ts_dem_hot_mean)/2
+    
+   
+    ts_dem_hot=ts_dem_hot_mean + Hot_Pixel_Constant * ts_dem_hot_std
+
+    
+    print('hot : max= %0.3f (Kelvin)' % ts_dem_hot_max, ', sd= %0.3f (Kelvin)' % ts_dem_hot_std, \
+           ', mean= %0.3f (Kelvin)' % ts_dem_hot_mean, ', value= %0.3f (Kelvin)' % ts_dem_hot)
+    return(ts_dem_hot,hot_pixels)
+    
+"""
 #------------------------------------------------------------------------------    
 def Calc_Cold_Pixels(ts_dem,tcoldmin,tcoldmax,water_mask,QC_Map,ts_dem_cold_veg,Cold_Pixel_Constant):
     """
@@ -2945,6 +3004,7 @@ def Calc_Cold_Pixels(ts_dem,tcoldmin,tcoldmax,water_mask,QC_Map,ts_dem_cold_veg,
     # cold_pixels[for_cold < 285.0] = 285.0
     ts_dem_cold_std = np.nanstd(cold_pixels)     # Standard deviation
     ts_dem_cold_min = np.nanmin(cold_pixels)     # Min
+    ts_dem_cold_max = np.nanmax(cold_pixels)
     ts_dem_cold_mean = np.nanmean(cold_pixels)   # Mean
 
     # If average temperature is below zero or nan than use the vegetation cold pixel
@@ -2959,7 +3019,7 @@ def Calc_Cold_Pixels(ts_dem,tcoldmin,tcoldmax,water_mask,QC_Map,ts_dem_cold_veg,
     if ts_dem_cold > ts_dem_cold_veg:
         ts_dem_cold = ts_dem_cold_veg 
             
-    print('cold water: min=%0.3f (Kelvin)' %ts_dem_cold_min , ', sd= %0.3f (Kelvin)' % ts_dem_cold_std, \
+    print('cold water: min=%0.3f (Kelvin)' %ts_dem_cold_min , 'max=%0.3f (Kelvin)' %ts_dem_cold_max, ', sd= %0.3f (Kelvin)' % ts_dem_cold_std, \
            ', mean= %0.3f (Kelvin)' % ts_dem_cold_mean, ', value= %0.3f (Kelvin)' % ts_dem_cold) 
     return(ts_dem_cold,cold_pixels,ts_dem_cold_mean)
      
@@ -2969,10 +3029,11 @@ def Calc_Cold_Pixels_Veg(NDVI,NDVI_max,NDVI_std,QC_Map,ts_dem,Image_Type, Cold_P
     Function to calculates the the cold pixels based on vegetation
     """   
     cold_pixels_vegetation = np.copy(ts_dem)
-    cold_pixels_vegetation[np.logical_and(NDVI <= (NDVI_max-0.01*NDVI_std),QC_Map != 0.0)] = 0.0 #(ORI = 0.1*NDVI_std)
+    cold_pixels_vegetation[np.logical_or(NDVI <= (NDVI_max-0.1*NDVI_std),QC_Map != 0.0)] = 0.0 #(ORI = 0.1*NDVI_std)
     cold_pixels_vegetation[cold_pixels_vegetation==0.0] = np.nan
     ts_dem_cold_std_veg = np.nanstd(cold_pixels_vegetation)
     ts_dem_cold_min_veg = np.nanmin(cold_pixels_vegetation)
+    ts_dem_cold_max_veg = np.nanmax(cold_pixels_vegetation)
     ts_dem_cold_mean_veg = np.nanmean(cold_pixels_vegetation)
     
     if Image_Type == 1:    
@@ -2982,7 +3043,7 @@ def Calc_Cold_Pixels_Veg(NDVI,NDVI_max,NDVI_std,QC_Map,ts_dem,Image_Type, Cold_P
     if Image_Type == 3:    
             ts_dem_cold_veg = ts_dem_cold_mean_veg + Cold_Pixel_Constant * ts_dem_cold_std_veg    
             
-    print('cold vegetation: min=%0.3f (Kelvin)' %ts_dem_cold_min_veg , ', sd= %0.3f (Kelvin)' % ts_dem_cold_std_veg, \
+    print('cold vegetation: min=%0.3f (Kelvin)' %ts_dem_cold_min_veg , 'max=%0.3f (Kelvin)' %ts_dem_cold_max_veg, ',sd= %0.3f (Kelvin)' % ts_dem_cold_std_veg, \
 				', mean= %0.3f (Kelvin)' % ts_dem_cold_mean_veg, ', value= %0.3f (Kelvin)' % ts_dem_cold_veg) 
     return(ts_dem_cold_veg)
    

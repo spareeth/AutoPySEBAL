@@ -68,7 +68,7 @@ for dt in `cat ${TMP}/dates.txt`; do
 	rs24="${PROJDIR}/meteo/${METEO_DB}/GLDAS_NOAH025_3H_A${dt}_SWdown_24_interp.tif"
 	transm24=0.7
 	rad_method_inst=1
-	rsinst="${PROJDIR}/meteo/${METEO_DB}/GLDAS_NOAH025_3H_A${dt}_SWdown_inst_interp.tif"
+	rsinst="${PROJDIR}/meteo/${METEO_DB}/GLDAS_NOAH025_3H_A${dt}_SWdown_24_interp.tif"
 	transminst=0.75
 	obst_ht=0.4
 # SOIL
@@ -81,11 +81,11 @@ for dt in `cat ${TMP}/dates.txt`; do
 	field_capacity="${PROJDIR}/soil/wcpf2_topsoil_gapfilled_wgs84.tif"
 	luemax=2.5
 # Calib
-	tcoldminin1=2  # low percentile ts_dem
-	tcoldmaxin1=5  # high percentile ts_dem
+	tcoldminin1=1  # low percentile ts_dem
+	tcoldmaxin1=2  # high percentile ts_dem
 	ndvihot_low1=1 # low percentile above zero
-	ndvihot_high1=5 # high percentile above zero
-	temp_lapse=0.0068 # r.regression.line mapx=srtm mapy=Temp_2018_07_05, get gain(b)
+	ndvihot_high1=2 # high percentile above zero
+	temp_lapse=0.0066 # r.regression.line mapx=srtm mapy=Temp_2018_07_05, get gain(b)
 	res=${RES}
 
 ### COMMAND ####
