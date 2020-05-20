@@ -85,20 +85,20 @@ for yy in `seq ${STYR} ${SPYR}`; do
 		MAPS4=`g.list rast pattern=GLDAS_NOAH025_3H_A${yy}${mm}${dd}.*_Rh$ sep=, map=.|cat`
 		###
 		### COMPUTING THE INSTANTANEOUS USING AVERAGE OF 9:00 and 12:00
-		#r.series input="GLDAS_NOAH025_3H_A${yy}${mm}${dd}.0900_Tair,GLDAS_NOAH025_3H_A${yy}${mm}${dd}.1200_Tair" output=GLDAS_NOAH025_3H_A${yy}${mm}${dd}_Tair_inst method=average
+		r.series input="GLDAS_NOAH025_3H_A${yy}${mm}${dd}.0900_Tair,GLDAS_NOAH025_3H_A${yy}${mm}${dd}.1200_Tair" output=GLDAS_NOAH025_3H_A${yy}${mm}${dd}_Tair_inst method=average
 		#r.series input="GLDAS_NOAH025_3H_A${yy}${mm}${dd}.0900_SWdown,GLDAS_NOAH025_3H_A${yy}${mm}${dd}.1200_SWdown" output=GLDAS_NOAH025_3H_A${yy}${mm}${dd}_SWdown_inst method=average
-		#r.series input="GLDAS_NOAH025_3H_A${yy}${mm}${dd}.0900_Wind,GLDAS_NOAH025_3H_A${yy}${mm}${dd}.1200_Wind" output=GLDAS_NOAH025_3H_A${yy}${mm}${dd}_Wind_inst method=average
-		#r.series input="GLDAS_NOAH025_3H_A${yy}${mm}${dd}.0900_Rh,GLDAS_NOAH025_3H_A${yy}${mm}${dd}.1200_Rh" output=GLDAS_NOAH025_3H_A${yy}${mm}${dd}_Rh_inst method=average
+		r.series input="GLDAS_NOAH025_3H_A${yy}${mm}${dd}.0900_Wind,GLDAS_NOAH025_3H_A${yy}${mm}${dd}.1200_Wind" output=GLDAS_NOAH025_3H_A${yy}${mm}${dd}_Wind_inst method=average
+		r.series input="GLDAS_NOAH025_3H_A${yy}${mm}${dd}.0900_Rh,GLDAS_NOAH025_3H_A${yy}${mm}${dd}.1200_Rh" output=GLDAS_NOAH025_3H_A${yy}${mm}${dd}_Rh_inst method=average
 		### COMPUTING THE INSTANTANEOUS USING 12:00
 		#r.mapcalc "GLDAS_NOAH025_3H_A${yy}${mm}${dd}_Tair_inst = GLDAS_NOAH025_3H_A${yy}${mm}${dd}.1200_Tair"
 		#r.mapcalc "GLDAS_NOAH025_3H_A${yy}${mm}${dd}_SWdown_inst = GLDAS_NOAH025_3H_A${yy}${mm}${dd}.1200_SWdown"
 		#r.mapcalc "GLDAS_NOAH025_3H_A${yy}${mm}${dd}_Wind_inst = GLDAS_NOAH025_3H_A${yy}${mm}${dd}.1200_Wind"
 		#r.mapcalc "GLDAS_NOAH025_3H_A${yy}${mm}${dd}_Rh_inst = GLDAS_NOAH025_3H_A${yy}${mm}${dd}.1200_Rh"
 		### COMPUTING THE INSTANTANEOUS USING Maximum of the day
-		r.series input=${MAPS1} output=GLDAS_NOAH025_3H_A${yy}${mm}${dd}_Tair_inst method=maximum
+		#r.series input=${MAPS1} output=GLDAS_NOAH025_3H_A${yy}${mm}${dd}_Tair_inst method=maximum
 		r.series input=${MAPS2} output=GLDAS_NOAH025_3H_A${yy}${mm}${dd}_SWdown_inst method=maximum
-		r.series input=${MAPS3} output=GLDAS_NOAH025_3H_A${yy}${mm}${dd}_Wind_inst method=maximum
-		r.series input=${MAPS4} output=GLDAS_NOAH025_3H_A${yy}${mm}${dd}_Rh_inst method=maximum
+		#r.series input=${MAPS3} output=GLDAS_NOAH025_3H_A${yy}${mm}${dd}_Wind_inst method=maximum
+		#r.series input=${MAPS4} output=GLDAS_NOAH025_3H_A${yy}${mm}${dd}_Rh_inst method=maximum
 		##Below for daily average
 		r.series input=${MAPS1} output=GLDAS_NOAH025_3H_A${yy}${mm}${dd}_Tair_24 method=average
 		r.series input=${MAPS2} output=GLDAS_NOAH025_3H_A${yy}${mm}${dd}_SWdown_24 method=average
