@@ -46,7 +46,7 @@ STDOY=`date2doy ${START}`
 SPDOY=`date2doy ${STOP}`
 
 # create new temporary location for the job, exit after creation of this location
-grass7_latest -c ${CRS} ${GRASSDB}/utm_temp -e --text
+grass78 -c ${CRS} ${GRASSDB}/utm_temp -e --text
 # now we can use this new location and run the job defined via	GRASS_BATCH_JOB
 
 LN=`which Preprocess_Landsat`
@@ -58,11 +58,11 @@ L7="LE07"
 
 if [ ${SENSOR} == ${L8} ]; then
 	export GRASS_BATCH_JOB="${OLNK}/Sub_Landsat8.sh"
-	grass7_latest -c ${GRASSDB}/utm_temp/landsat8 --text
+	grass78 -c ${GRASSDB}/utm_temp/landsat8 --text
 	unset GRASS_BATCH_JOB
 else
 	export GRASS_BATCH_JOB="${OLNK}/Sub_Landsat7.sh"
-	grass7_latest -c ${GRASSDB}/utm_temp/landsat7 --text
+	grass78 -c ${GRASSDB}/utm_temp/landsat7 --text
 	unset GRASS_BATCH_JOB
 fi
 ## CleanUp
