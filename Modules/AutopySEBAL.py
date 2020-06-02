@@ -520,7 +520,7 @@ def main(indir, outdir, itype, pathdem, lsprefix, lsnr, lsthermal, hot, cold, ti
     # ---------------------------- Residual soil moisture content subsoil  ------------
     # Open soil data, first try to open as value, otherwise as string (path)											
     try:
-        Theta_res_sub = float(ws['E%d' %number].value)              # Residual soil moisture content subsoil
+        Theta_res_sub = float(theta_res_sub)              # Residual soil moisture content subsoil
 							
         # If the data is a value than call this variable 0 							
         Theta_res_sub_kind_of_data = 0
